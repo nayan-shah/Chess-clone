@@ -32,7 +32,7 @@ io.on('connection', (uniquesocket) => {
         uniquesocket.emit('spectatorRole')
     }
 
-    socket.io('disconnect', () => {
+    uniquesocket.on('disconnect', () => {
         if(uniquesocket.id === players.white){
             delete players.white;
         }
