@@ -5,6 +5,13 @@ const boardElements = document.querySelector('.chessboard')
 let draggedPiece = null;
 let sourceSquare = null;
 let playerRole = null;
+const getPiecesUnicode =(piece) => {
+    const unicodePieces = {
+        p: '♙', r: '♖', n: '♘', b: '♗', q: '♕', k: '♔',
+        P: '♟', R: '♜', N: '♞', B: '♝', Q: '♛', K: '♚',
+    }
+    return unicodePieces[piece.type] || "";
+}
 
 const renderBoard = () => {
     const board = chess.board()
@@ -19,7 +26,7 @@ const renderBoard = () => {
             if(square){
                 const pieceElement = document.createElement('div');
                 pieceElement.classList.add('piece', square.color === 'w'? 'white': 'black', )
-                pieceElement.innerHTML = "";
+                pieceElement.innerHTML = getPiecesUnicode(square)
                 pieceElement.draggable = playerRole === square.color;
                 pieceElement.addEventListener('dragstart', (e) => {
                     if(pieceElement.draggable){
@@ -48,11 +55,14 @@ const renderBoard = () => {
         })
     })
 }
-renderBoard();
-const handleMove = () => {
 
+
+const handleMove = () => {
+    const move = {
+        from: `${String.fromCharCode(97 + source.col)}${8 - source.row}`,
+        to : `${String.fromCharCode(97 + target.col)}${8 - target.row}`,
+        promotion: 'q',
+    }    
 }
-const getPiecesUnicode = () => {
-    const unicodePieces = {
-    }
-}
+
+renderBoard();
