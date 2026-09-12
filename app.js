@@ -52,13 +52,13 @@ io.on('connection', (uniquesocket) => {
                 io.emit('boardState', chess.fen())
             }
             else{
-                console.log('invalid move: ', move)
+                console.log('invalidMove: ', move)
                 uniquesocket.emit('invalidMove', move)
             }
         }
         catch(err){
             console.log(err)
-            uniquesocket.emit('invalid move: ', move)
+            uniquesocket.emit('invalidMove: ', move)
         }
     })
 })
